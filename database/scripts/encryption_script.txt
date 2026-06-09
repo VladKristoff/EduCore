@@ -1,0 +1,16 @@
+Скрипт шифрования:
+ALTER TABLE SystemUsers ADD COLUMN encrypted_password BYTEA;
+
+UPDATE SystemUsers 
+SET encrypted_password = pgp_sym_encrypt(password, 'my_secret_key');
+
+ALTER TABLE SystemUsers DROP COLUMN password;
+
+
+Скрипт отображения с расшифрованными паролями:
+SELECT 
+    id,
+    username,
+    pgp_sym_decrypt(encrypted_password, 'my_secret_key') AS decrypted_password,
+    role
+FROM SystemUsers;

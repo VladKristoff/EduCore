@@ -1,0 +1,16 @@
+DO $$
+BEGIN
+    WITH moved_rows AS (
+        DELETE FROM lessons
+        WHERE lesson_date < (CURRENT_DATE - INTERVAL '3 years')
+        RETURNING lesson_id, teacher_id, course_code, lesson_date, start_time, end_time, actual_duration_hours, total_cost
+    )
+    INSERT INTO archived_education_logs (lesson_id, teacher_id, course_code, lesson_date, start_time, end_time, actual_duration_hours, total_cost)
+    SELECT * FROM moved_rows;
+
+    RAISE NOTICE 'Архивация успешно завершена. Занятия старше 3 лет перенесены в таблицу archived_education_logs.';
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE EXCEPTION 'Критическая ошибка при архивации данных: %. Транзакция полностью отменена.', SQLERRM;
+END $$;
