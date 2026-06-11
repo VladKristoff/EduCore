@@ -16,10 +16,22 @@ class AppEduCore:
 
         set_style(self.root)
 
+        self.pages = {}
+
         self.current_window = None
 
-    def show_window(self, page_class, *args, **kwargs):
-        if self.current_window:
-            self.current_window.destroy()
+    def register_page(self, name, page_class):
+        self.pages[name] = page_class
 
+    def show_window(self, name, *args, **kwargs):
+        if name not in self.pages:
+            print(f"Ошибка: Страница {name} не зарегистрирована!")
+            return
+
+        for widget in self.main_frame.winfo_children():
+            widget.destroy()
+
+        page_class = self.pages[name]
         self.current_window = page_class(self.main_frame, self, *args, **kwargs)
+
+

@@ -15,7 +15,7 @@ class LoginPage:
         ttk.Label(self.main_frame, text="EduCore", style="BigBlueLabel.TLabel").pack(side="top", pady=50)
 
         enter_frame = Frame(self.main_frame, background="#ffffff")
-        enter_frame.pack(anchor="center", pady=100)
+        enter_frame.pack(anchor="center", pady=(100, 0))
 
         enter_frame.columnconfigure(0, weight=1)
 
@@ -23,8 +23,8 @@ class LoginPage:
         ttk.Label(enter_frame, text="Логин:", style="BlueLabel.TLabel").grid(
             row=0, column=0, sticky="w", pady=(10, 0)
         )
-        login_entry = ttk.Entry(enter_frame, width=20, font=("Arial", 16))
-        login_entry.grid(row=1, column=0, sticky="ew", pady=(5, 15), padx=(0, 34))
+        self.login_entry = ttk.Entry(enter_frame, width=20, font=("Arial", 16))
+        self.login_entry.grid(row=1, column=0, sticky="ew", pady=(5, 15), padx=(0, 34))
 
         # Пароль
         ttk.Label(enter_frame, text="Пароль:", style="BlueLabel.TLabel").grid(
@@ -38,19 +38,41 @@ class LoginPage:
         password_container.rowconfigure(0, weight=1)
 
         # Поле ввода пароля
-        password_entry = ttk.Entry(password_container, width=35, font=("Arial", 16), show="*")
-        password_entry.grid(row=0, column=0, sticky="ew", padx=(0, 5))
+        self.password_entry = ttk.Entry(password_container, width=35, font=("Arial", 16), show="*")
+        self.password_entry.grid(row=0, column=0, sticky="ew", padx=(0, 5))
 
         # Кнопка-глазок
         toggle_btn = ttk.Checkbutton(
             password_container,
             text="👁",
-            style="Eye.Toolbutton"
+            style="Eye.Toolbutton",
+            variable=self.password_visible,
+            command=lambda: self.toggle_password_visible()
         )
         toggle_btn.grid(row=0, column=1, sticky="ns")
 
         # Кнопка "Войти"
-        login_button = ttk.Button(enter_frame, text="Войти", style="BlueButton.TButton")
+        login_button = ttk.Button(enter_frame, text="Войти", style="BlueButton.TButton",
+                                  command=lambda: self.authorization())
         login_button.grid(row=4, column=0, pady=20, ipady=7, ipadx=70, padx=(0, 10))
 
+        self.error_label = ttk.Label(self.main_frame, text="Введите логин и пароль",
+                                style="ErrorLabel.TLabel")
+        self.error_label.pack(side="top")
+
+    def toggle_password_visible(self):
+        if self.password_visible.get():
+            self.password_entry.configure(show="")
+        else:
+            self.password_entry.configure(show="*")
+
+    def authorization(self):
+        login = self.login_entry.get()
+        password = self.password_entry.get()
+
+        if not login or not password:
+            self.error_label.configure(foreground="red")
+            return
+        else:
+            self.app.show_window("teacher_page")
 

@@ -18,6 +18,12 @@ def set_style(root):
                     font=("Inter", 24, "bold"),
                     background="#ffffff")
 
+    # Надпись ошибки
+    style.configure("ErrorLabel.TLabel",
+                    foreground="#ffffff",
+                    background="#ffffff",
+                    font=("Arial", 16))
+
     # Синяя кнопка
     style.configure("BlueButton.TButton",
                     background="#279ef9",
