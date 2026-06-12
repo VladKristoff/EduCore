@@ -61,3 +61,28 @@ def set_style(root):
         background=[("pressed", "#ffffff"), ("active", "#ffffff")],
         foreground=[("pressed", "#1e3d59"), ("active", "#279ef9")]
     )
+
+    style.configure("AdminMain.TFrame", background="#ffffff")
+
+    # Фон для верхней панели переключателей
+    style.configure("TabMenu.TFrame", background="#DDF6FF")
+
+    # Стиль для кнопок-вкладок (имитируем современные табы)
+    style.configure("TabButton.TButton",
+                    background="#f8fafc",
+                    foreground="#64748b",
+                    font=("Arial", 11, "bold"),
+                    borderwidth=0,
+                    focuscolor="none",
+                    relief="flat",
+                    padding=[15, 10])
+
+    # Стиль для АКТИВНОЙ кнопки-вкладки
+    style.configure("ActiveTabButton.TButton",
+                    background="#ffffff",
+                    foreground="#279ef9",
+                    font=("Arial", 11, "bold"),
+                    borderwidth=0,
+                    focuscolor="none",
+                    relief="flat",
+                    padding=[15, 10])

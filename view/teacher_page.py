@@ -11,3 +11,4 @@ class TeacherPage:
 
     def create_widgets(self):
         pass
+

@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+from database.db_manager import db_manager
 
 class LoginPage:
     def __init__(self, main_frame, app):
@@ -23,8 +24,8 @@ class LoginPage:
         ttk.Label(enter_frame, text="Логин:", style="BlueLabel.TLabel").grid(
             row=0, column=0, sticky="w", pady=(10, 0)
         )
-        self.login_entry = ttk.Entry(enter_frame, width=20, font=("Arial", 16))
-        self.login_entry.grid(row=1, column=0, sticky="ew", pady=(5, 15), padx=(0, 34))
+        self.username_entry = ttk.Entry(enter_frame, width=20, font=("Arial", 16))
+        self.username_entry.grid(row=1, column=0, sticky="ew", pady=(5, 15), padx=(0, 34))
 
         # Пароль
         ttk.Label(enter_frame, text="Пароль:", style="BlueLabel.TLabel").grid(
@@ -67,12 +68,18 @@ class LoginPage:
             self.password_entry.configure(show="*")
 
     def authorization(self):
-        login = self.login_entry.get()
+        username = self.username_entry.get()
         password = self.password_entry.get()
 
-        if not login or not password:
+        if not username or not password:
             self.error_label.configure(foreground="red")
             return
         else:
-            self.app.show_window("teacher_page")
+            role = db_manager.authenticate_user(username, password)
+            if role == "app":
+                self.app.show_window("teacher_page")
+            elif role == "admin":
+                self.app.show_window("admin_page")
+            else:
+                print("Ошибка открытия страницы пользователя")
 
