@@ -24,7 +24,7 @@ def set_style(root):
                     background="#ffffff",
                     font=("Arial", 16))
 
-    # Синяя кнопка
+    # Большая синяя кнопка
     style.configure("BlueButton.TButton",
                     background="#279ef9",
                     foreground="#ffffff",
@@ -35,6 +35,22 @@ def set_style(root):
                     relief="flat")
 
     style.map("BlueButton.TButton",
+              background=[
+                  ('pressed', '#006BFF'),
+                  ('active', '#006BFF')
+              ],
+              foreground=[
+                  ('pressed', 'white'),
+                  ('active', 'white')
+              ])
+
+    # Маленькая синяя кнопка
+    style.configure("SmallBlueButton.TButton",
+                    background="#279ef9",
+                    foreground="#ffffff",
+                    font=("Inter", 11, "bold"))
+
+    style.map("SmallBlueButton.TButton",
               background=[
                   ('pressed', '#006BFF'),
                   ('active', '#006BFF')
@@ -65,11 +81,11 @@ def set_style(root):
     style.configure("AdminMain.TFrame", background="#ffffff")
 
     # Фон для верхней панели переключателей
-    style.configure("TabMenu.TFrame", background="#DDF6FF")
+    style.configure("TabMenu.TFrame", background="#ADD8E6")
 
     # Стиль для кнопок-вкладок (имитируем современные табы)
     style.configure("TabButton.TButton",
-                    background="#f8fafc",
+                    background="#ffffff",
                     foreground="#64748b",
                     font=("Arial", 11, "bold"),
                     borderwidth=0,
