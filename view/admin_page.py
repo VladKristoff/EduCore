@@ -82,7 +82,7 @@ class AdminPage:
         columns = ("course_name", "total_hours", "total_cost")
         self.tree = ttk.Treeview(table_container, columns=columns, show="headings", selectmode="browse")
 
-        self.tree.heading("course_name", text="Учебный курс / Дисциплина")
+        self.tree.heading("course_name", text="Учебный курс")
         self.tree.heading("total_hours", text="Общее кол-во часов")
         self.tree.heading("total_cost", text="Суммарная стоимость затрат")
 
@@ -99,7 +99,7 @@ class AdminPage:
         summary_panel = tk.LabelFrame(
             self.content_frame,
             text=" Итоговые показатели по учебному центру ",
-            font=("Arial", 10, "bold"),
+            font=("Arial", 14, "bold"),
             bg="#f8fafc",
             fg="#1e293b",
             bd=1,
@@ -112,7 +112,7 @@ class AdminPage:
         self.lbl_total_hours = tk.Label(
             summary_panel,
             text="Всего проведено: 0 академических часов",
-            font=("Arial", 11),
+            font=("Arial", 14),
             bg="#f8fafc",
             fg="#334155"
         )
@@ -121,7 +121,7 @@ class AdminPage:
         self.lbl_total_cost = tk.Label(
             summary_panel,
             text="Общие затраты: 0.00 руб.",
-            font=("Arial", 11, "bold"),
+            font=("Arial", 14, "bold"),
             bg="#f8fafc",
             fg="#b91c1c"
         )
@@ -181,58 +181,78 @@ class AdminPage:
     def show_deans_content(self):
         student_frame = tk.LabelFrame(
             self.content_frame,
-            text=" Управление договорами (Процедура suspend_student_contract) ",
-            font=("Arial", 10, "bold"), bg="#ffffff", fg="#0f172a", bd=1, relief="solid", padx=15, pady=15
+            text=" Управление договорами",
+            font=("Arial", 14, "bold"), bg="#ffffff", fg="#0f172a", bd=1, relief="solid", padx=15, pady=15
         )
         student_frame.pack(fill="x", padx=20, pady=(20, 10))
 
-        lbl_contract = tk.Label(student_frame, text="Номер договора студента:", font=("Arial", 10), bg="#ffffff",
+        lbl_contract = tk.Label(student_frame, text="Номер договора студента:", font=("Arial", 14), bg="#ffffff",
                                 fg="#334155")
         lbl_contract.grid(row=0, column=0, sticky="w", pady=5)
 
-        self.entry_contract = ttk.Entry(student_frame, width=25)
-        self.entry_contract.grid(row=0, column=1, padx=10, pady=5)
+        self.combo_contract = ttk.Combobox(student_frame, width=25, font=("Arial", 14))
+        self.combo_contract.grid(row=0, column=1, padx=10, pady=5)
 
         btn_suspend = ttk.Button(
             student_frame,
             text="Приостановить договор (Академ)",
+            style="SmallBlueButton.TButton",
             command=self.run_suspend_student_contract
         )
         btn_suspend.grid(row=0, column=2, padx=10, pady=5)
 
+        btn_back_suspend = ttk.Button(
+            student_frame,
+            text="Продолжить договор",
+            style="SmallBlueButton.TButton",
+            command=lambda : self.resume_student_contract()
+        )
+        btn_back_suspend.grid(row=0, column=3, padx=10, pady=5)
+
         schedule_frame = tk.LabelFrame(
             self.content_frame,
-            text=" Назначение группы на занятие (Перехват исключений бизнеса) ",
-            font=("Arial", 10, "bold"), bg="#ffffff", fg="#0f172a", bd=1, relief="solid", padx=15, pady=15
+            text=" Назначение группы на занятие",
+            font=("Arial", 14, "bold"), bg="#ffffff", fg="#0f172a", bd=1, relief="solid", padx=15, pady=15
         )
         schedule_frame.pack(fill="both", expand=True, padx=20, pady=(10, 20))
 
         # Выбор курса
-        lbl_course = tk.Label(schedule_frame, text="Учебный курс / Дисциплина:", font=("Arial", 10), bg="#ffffff",
+        lbl_course = tk.Label(schedule_frame, text="Учебный курс:", font=("Arial", 14), bg="#ffffff",
                               fg="#334155")
         lbl_course.grid(row=0, column=0, sticky="w", pady=8)
 
-        self.combo_course = ttk.Combobox(schedule_frame, width=45, state="readonly")
+        self.combo_course = ttk.Combobox(schedule_frame, width=45, state="readonly", font=("Arial", 14))
         self.combo_course.grid(row=0, column=1, padx=10, pady=8, sticky="w")
 
         # Выбор преподавателя
-        lbl_teacher = tk.Label(schedule_frame, text="Преподаватель центра:", font=("Arial", 10), bg="#ffffff",
+        lbl_teacher = tk.Label(schedule_frame, text="Преподаватель центра:", font=("Arial", 14), bg="#ffffff",
                                fg="#334155")
         lbl_teacher.grid(row=1, column=0, sticky="w", pady=8)
 
-        self.combo_teacher = ttk.Combobox(schedule_frame, width=45, state="readonly")
+        self.combo_teacher = ttk.Combobox(schedule_frame, width=45, state="readonly", font=("Arial", 14))
         self.combo_teacher.grid(row=1, column=1, padx=10, pady=8, sticky="w")
 
         # Поле ввода даты
-        lbl_date = tk.Label(schedule_frame, text="Дата проведения (ГГГГ-ММ-ДД):", font=("Arial", 10), bg="#ffffff",
+        lbl_date = tk.Label(schedule_frame, text="Дата проведения (ГГГГ-ММ-ДД):", font=("Arial", 14), bg="#ffffff",
                             fg="#334155")
         lbl_date.grid(row=2, column=0, sticky="w", pady=8)
 
-        self.entry_date = DateEntry(schedule_frame, width=45,
-                                    background='darkblue',
-                                    foreground='white',
-                                    borderwidth=2,
-                                    date_pattern='yyyy-mm-dd')
+        self.entry_date = DateEntry(schedule_frame,
+                        width=18,
+                        background="#2c3e50",
+                        foreground="white",
+                        borderwidth=1,
+                        date_pattern="yyyy-mm-dd",
+                        font=("Segoe UI", 12),
+                        selectbackground="#3498db",
+                        selectforeground="white",
+                        normalbackground="#ecf0f1",
+                        weekendbackground="#f9e79f",
+                        weekendforeground="#7f8c8d",
+                        othermonthbackground="#f8f9fa",
+                        othermonthforeground="#bdc3c7",
+                        showweeknumbers=False,
+                        firstweekday="monday" )
         self.entry_date.set_date("2026-06-15")
         self.entry_date.grid(row=2, column=1, padx=10, pady=8, sticky="w")
 
@@ -254,6 +274,11 @@ class AdminPage:
         try:
             cursor = conn.cursor()
 
+            # Загружаем договора
+            cursor.execute("SELECT contract_number FROM students;")
+            contracts = cursor.fetchall()
+            self.combo_contract['values'] = [cont for cont in contracts]
+
             # Загружаем курсы
             cursor.execute("SELECT course_code, course_name FROM courses ORDER BY course_name;")
             courses = cursor.fetchall()
@@ -272,7 +297,7 @@ class AdminPage:
             conn.close()
 
     def run_suspend_student_contract(self):
-        contract_num = self.entry_contract.get().strip()
+        contract_num = self.combo_contract.get().strip()
         if not contract_num:
             messagebox.showwarning("Внимание", "Поле номера договора не должно быть пустым!")
             return
@@ -282,16 +307,62 @@ class AdminPage:
             return
         try:
             cursor = conn.cursor()
-            cursor.execute("CALL suspend_student_contract(%s);", (contract_num,))
-            conn.commit()
+            cursor.execute("SELECT status, full_name FROM students WHERE contract_number=%s;", (contract_num,))
+            result = cursor.fetchone()
 
-            messagebox.showinfo("Успех", f"Договор №{contract_num} успешно переведен в академический отпуск!")
-            self.entry_contract.delete(0, tk.END)
+            if result[0] == "активен":
+                cursor.execute("CALL suspend_student_contract(%s);", (contract_num,))
+                conn.commit()
+
+                messagebox.showinfo("Успех", f"Договор №{contract_num} успешно переведен в академический отпуск!")
+                self.combo_contract.delete(0, tk.END)
+            else:
+                messagebox.showerror("Ошибка", f"Студент '{result[1]}' уже в академическом отпуске")
 
         except psycopg2.Error as e:
             conn.rollback()
             err_msg = e.diag.message_primary if e.diag.message_primary else str(e)
             messagebox.showerror("Ошибка бизнеса", f"Действие отклонено СУБД:\n{err_msg}")
+        finally:
+            conn.close()
+
+    def resume_student_contract(self):
+        contract_num = self.combo_contract.get().strip()
+        if not contract_num:
+            messagebox.showwarning("Внимание", "Поле номера договора не должно быть пустым!")
+            return
+
+        conn = db_manager.connect_bd()
+        if not conn:
+            return
+        try:
+            cursor = conn.cursor()
+
+            cursor.execute("SELECT status, full_name FROM students WHERE contract_number=%s;", (contract_num,))
+            result = cursor.fetchone()
+
+            if not result:
+                messagebox.showerror("Ошибка", f"Договор №{contract_num} не найден!")
+                return
+
+            current_status = result[0]
+
+            if current_status == "академический отпуск":
+                cursor.execute(
+                    "UPDATE students SET status = 'активен' WHERE contract_number = %s;",
+                    (contract_num,)
+                )
+                conn.commit()
+
+                messagebox.showinfo("Успех", f"Договор №{contract_num} успешно активирован!")
+                self.combo_contract.delete(0, tk.END)
+            else:
+                messagebox.showerror("Ошибка", f"Студент '{result[1]}' уже имеет статус '{current_status}'")
+
+        except psycopg2.Error as e:
+            conn.rollback()
+            err_msg = e.diag.message_primary if e.diag.message_primary else str(e)
+            messagebox.showerror("Ошибка БД", f"Не удалось активировать договор:\n{err_msg}")
         finally:
             conn.close()
 
@@ -314,7 +385,7 @@ class AdminPage:
             cursor = conn.cursor()
             query = """
                 INSERT INTO lessons (teacher_id, course_code, lesson_date) 
-                VALUES (%s, %s, %s, %s);
+                VALUES (%s, %s, %s);
             """
             cursor.execute(query, (teacher_id, course_code, date_val))
             conn.commit()

@@ -48,7 +48,7 @@ def set_style(root):
     style.configure("SmallBlueButton.TButton",
                     background="#279ef9",
                     foreground="#ffffff",
-                    font=("Inter", 11, "bold"))
+                    font=("Inter", 12, "bold"))
 
     style.map("SmallBlueButton.TButton",
               background=[
