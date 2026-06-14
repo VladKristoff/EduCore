@@ -1,0 +1,5 @@
+babel==2.18.0
+pillow==12.2.0
+psycopg2-binary==2.9.12
+tk==0.1.0
+tkcalendar==1.6.1
