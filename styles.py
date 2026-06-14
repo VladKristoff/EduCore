@@ -18,6 +18,12 @@ def set_style(root):
                     font=("Inter", 24, "bold"),
                     background="#ffffff")
 
+    # Надпись таймера
+    style.configure("TimerLabel.TLabel",
+                    foreground="#279ef9",
+                    font=("Inter", 24, "bold"),
+                    background="#ADD8E6")
+
     # Надпись ошибки
     style.configure("ErrorLabel.TLabel",
                     foreground="#ffffff",
@@ -102,3 +108,30 @@ def set_style(root):
                     focuscolor="none",
                     relief="flat",
                     padding=[15, 10])
+
+    # Таблица
+    style.configure("Treeview",
+                    background="#ffffff",
+                    fieldbackground="#ffffff",
+                    foreground="#334155",
+                    font=("Arial", 11),
+                    rowheight=35,
+                    borderwidth=1,
+                    lightcolor="#cbd5e1",
+                    darkcolor="#cbd5e1")
+
+    style.map("Treeview",
+              background=[("selected", "#e2e8f0")],
+              foreground=[("selected", "#0f172a")])
+
+    style.configure("Treeview.Heading",
+                    background="#1e3d59",
+                    foreground="#ffffff",
+                    font=("Arial", 11, "bold"),
+                    padding=[10, 8],
+                    borderwidth=1,
+                    relief="flat")
+
+    style.map("Treeview.Heading",
+              background=[("active", "#ADD8E6")],
+              foreground=[("active", "#1e3d59")])

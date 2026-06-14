@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a227c85-d942-4b92-8102-9e9e0165e7ed" name="Changes" comment="Продолжаю делать страницу админа">
+    <list default="true" id="7a227c85-d942-4b92-8102-9e9e0165e7ed" name="Changes" comment="Доделал страницу админа">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/styles.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/admin_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/admin_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/login_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/login_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/teacher_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/teacher_page.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781278942999</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Доделал страницу админа">
+      <option name="closed" value="true" />
+      <created>1781333179202</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781333179202</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,7 +177,8 @@
     <MESSAGE value="Доделал страницу авторизации, изменил логику перехода страниц" />
     <MESSAGE value="Добавил подключение к БД, сделал авторизацию, начал делать страницу админа" />
     <MESSAGE value="Продолжаю делать страницу админа" />
-    <option name="LAST_COMMIT_MESSAGE" value="Продолжаю делать страницу админа" />
+    <MESSAGE value="Доделал страницу админа" />
+    <option name="LAST_COMMIT_MESSAGE" value="Доделал страницу админа" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

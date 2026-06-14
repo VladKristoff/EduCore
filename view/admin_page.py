@@ -393,14 +393,6 @@ class AdminPage:
 
         except psycopg2.Error as e:
             conn.rollback()
-            err_msg = str(e).lower()
-            # Сценарий на случай, если триггер/процедура на стороне БД всё-таки будут созданы
-            if "отпуск" in err_msg or "отстранен" in err_msg:
-                messagebox.showerror(
-                    "Предупреждение",
-                    "Ошибка: Данный преподаватель временно недоступен для ведения занятий!"
-                )
-            else:
-                messagebox.showerror("Ошибка БД", f"Не удалось добавить запись в расписание:\n{e}")
+            messagebox.showerror("Ошибка БД", f"Не удалось добавить запись в расписание:\n{e}")
         finally:
             conn.close()
