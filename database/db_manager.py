@@ -1,3 +1,5 @@
+from tkinter import messagebox
+
 import psycopg2
 
 class DbManager:
@@ -45,7 +47,7 @@ class DbManager:
                 print(f"Неверное имя пользователя или пароль")
                 return None
         except Exception as e:
-            print(f"Ошибка авторизации: {e}")
+            messagebox.showerror(f"Ошибка: {e}", "Данный пользователь не существует")
         finally:
             cursor.close()
             conn.close()

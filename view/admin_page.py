@@ -203,7 +203,7 @@ class AdminPage:
 
         btn_back_suspend = ttk.Button(
             student_frame,
-            text="Продолжить договор",
+            text="Возобновить договор",
             style="SmallBlueButton.TButton",
             command=lambda : self.resume_student_contract()
         )
