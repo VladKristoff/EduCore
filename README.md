@@ -9,7 +9,7 @@
 
 ---
 
-## 📸 Галерея интерфейса
+## 📸 Интерфейс
 
 ### 1. Страница авторизации
 <img width="1435" height="840" alt="Страница авторизации" src="https://github.com/user-attachments/assets/7f273d91-fcd8-44f4-8b09-fb3493dd030a" />
